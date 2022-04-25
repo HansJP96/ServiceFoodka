@@ -8,7 +8,7 @@ Característica: Obtener reservas
   Para obtener la informacion relacionada con la reserva
 
   Antecedentes: Acceso al recurso base de la pagina
-    Dado que accedo al recurso web de los servicios
+    Dado que accedo al recurso web de los servicios para obtener reserva
 
   Escenario: Consulta de reserva exitosa
     Cuando hago una peticion para consultar una reserva existente

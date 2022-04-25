@@ -10,10 +10,11 @@ public class ObtenerReservaStepDefinition extends ConfigBase {
 
     private static final Logger LOGGER = Logger.getLogger(ObtenerReservaStepDefinition.class);
 
-    @Dado("que accedo al recurso web de los servicios")
-    public void queAccedoAlRecursoWebDeLosServicios() {
+    @Dado("que accedo al recurso web de los servicios para obtener reserva")
+    public void queAccedoAlRecursoWebDeLosServiciosParaObtenerReserva() {
 
     }
+
     @Cuando("hago una peticion para consultar una reserva existente")
     public void hagoUnaPeticionParaConsultarUnaReservaExistente() {
 
