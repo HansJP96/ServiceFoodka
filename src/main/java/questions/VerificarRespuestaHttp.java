@@ -11,7 +11,7 @@ public class VerificarRespuestaHttp implements Question<Void> {
     private int expectedStatusCode;
     private static final Logger LOGGER = Logger.getLogger(VerificarRespuestaHttp.class);
 
-    public static VerificarRespuestaHttp checkHttpResponse() {
+    public static VerificarRespuestaHttp verificarRespuestaHttp() {
         return new VerificarRespuestaHttp();
     }
 

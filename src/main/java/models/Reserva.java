@@ -4,6 +4,7 @@ package models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import util.ConvertidorJson;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -14,24 +15,64 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
         "id",
         "mensaje"
 })
-public class Reserva {
+public class Reserva extends ConvertidorJson {
     @JsonInclude(Include.NON_DEFAULT)
     @JsonProperty("cliente")
-    public Cliente cliente;
+    private Cliente cliente;
 
     @JsonInclude(Include.NON_DEFAULT)
     @JsonProperty("dia")
-    public String dia;
+    private String dia;
 
     @JsonInclude(Include.NON_DEFAULT)
     @JsonProperty("hora")
-    public String hora;
+    private String hora;
 
     @JsonInclude(Include.NON_DEFAULT)
     @JsonProperty("id")
-    public String id;
+    private String id;
 
     @JsonInclude(Include.NON_DEFAULT)
     @JsonProperty("mensaje")
-    public String mensaje;
+    private String mensaje;
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
 }

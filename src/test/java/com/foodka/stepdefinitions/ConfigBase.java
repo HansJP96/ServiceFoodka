@@ -7,7 +7,7 @@ import java.util.Locale;
 import static util.Log4j2Valores.*;
 
 public class ConfigBase {
-    protected static final String SERVICIOS_FOODKA = "https://reqres.in";
+    protected static final String SERVICIOS_BASE_FOODKA = "https://app-restaurante-back-qa.herokuapp.com";
 
     protected void configGeneral() {
         configLog4j2();
