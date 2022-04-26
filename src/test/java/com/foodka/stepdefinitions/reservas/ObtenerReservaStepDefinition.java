@@ -4,7 +4,6 @@ import com.foodka.stepdefinitions.ConfigBase;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
-import io.restassured.http.ContentType;
 import models.Reserva;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
@@ -79,21 +78,24 @@ public class ObtenerReservaStepDefinition extends ConfigBase {
                 seeThat("la informacion de la reserva devuelta",
                         response -> respuestaGet,
                         allOf(
-                                hasProperty("cliente",notNullValue()),
-                                hasProperty("hora",notNullValue()),
-                                hasProperty("dia",notNullValue()),
-                                hasProperty("id",notNullValue()),
-                                hasProperty("mensaje",notNullValue()),
-                                hasProperty("cantidadPersonas",notNullValue())
+                                hasProperty("cliente", notNullValue()),
+                                hasProperty("hora", notNullValue()),
+                                hasProperty("dia", notNullValue()),
+                                hasProperty("id", notNullValue()),
+                                hasProperty("mensaje", notNullValue()),
+                                hasProperty("cantidadPersonas", notNullValue())
                         )
-                ),
+                )
+        );
+
+        actor.should(
                 seeThat("la informacion del cliente devuelta",
-                        response-> respuestaGet,
+                        response -> respuestaGet,
                         allOf(
                                 hasProperty("cliente",
                                         allOf(
                                                 hasProperty("nombre", notNullValue()),
-                                                hasProperty("apellido",notNullValue()),
+                                                hasProperty("apellido", notNullValue()),
                                                 hasProperty("email", notNullValue()),
                                                 hasProperty("telefono", notNullValue())
                                         )

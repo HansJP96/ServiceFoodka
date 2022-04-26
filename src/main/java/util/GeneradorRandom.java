@@ -18,17 +18,17 @@ public class GeneradorRandom {
     private GeneradorRandom() {
     }
 
-    public static String diaRandom(){
+    public static String diaRandom() {
         SimpleDateFormat patronFecha = new SimpleDateFormat("dd/MM/yyyy");
         return patronFecha.format(faker.date().future(150, TimeUnit.DAYS));
     }
 
-    public static String horaRandom(){
+    public static String horaRandom() {
         return HORAS.get(faker.random().nextInt(TAMANO_HORAS)).obtenerValor();
     }
 
-    public static String mensajeRandom(){
-        return faker.food().dish() + faker.food().fruit() + faker.food().vegetable() ;
+    public static String mensajeRandom() {
+        return faker.food().dish() + " " + faker.food().fruit() + " " + faker.food().vegetable();
     }
 
     public static String crearReservaRandom() {
@@ -44,6 +44,7 @@ public class GeneradorRandom {
         reserva.setMensaje(mensajeRandom());
         return reserva.toJson();
     }
+
     public static String idRandom() {
         return faker.idNumber().invalid();
     }
