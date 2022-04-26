@@ -18,8 +18,20 @@ public class GeneradorRandom {
     private GeneradorRandom() {
     }
 
-    public static String crearReservaRandom() {
+    public static String diaRandom(){
         SimpleDateFormat patronFecha = new SimpleDateFormat("dd/MM/yyyy");
+        return patronFecha.format(faker.date().future(150, TimeUnit.DAYS));
+    }
+
+    public static String horaRandom(){
+        return HORAS.get(faker.random().nextInt(TAMANO_HORAS)).obtenerValor();
+    }
+
+    public static String mensajeRandom(){
+        return faker.food().dish() + faker.food().fruit() + faker.food().vegetable() ;
+    }
+
+    public static String crearReservaRandom() {
         Cliente cliente = new Cliente();
         cliente.setNombre(faker.name().firstName());
         cliente.setApellido(faker.name().lastName());
@@ -27,9 +39,9 @@ public class GeneradorRandom {
 
         Reserva reserva = new Reserva();
         reserva.setCliente(cliente);
-        reserva.setDia(patronFecha.format(faker.date().future(150, TimeUnit.DAYS)));
-        reserva.setHora(HORAS.get(faker.random().nextInt(TAMANO_HORAS)).obtenerValor());
-        reserva.setMensaje(faker.lorem().paragraph());
+        reserva.setDia(diaRandom());
+        reserva.setHora(horaRandom());
+        reserva.setMensaje(mensajeRandom());
         return reserva.toJson();
     }
     public static String idRandom() {

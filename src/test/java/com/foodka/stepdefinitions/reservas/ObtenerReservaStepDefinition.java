@@ -23,7 +23,7 @@ import static questions.RespuestaVacia.respuestaVacia;
 import static questions.VerificarRespuestaHttp.verificarRespuestaHttp;
 import static task.get.GetConParametro.getConParametro;
 import static util.GeneradorRandom.idRandom;
-import static util.GeneradorRandom.crearReservaRandom;
+import static util.Precondiciones.precondiciones;
 
 public class ObtenerReservaStepDefinition extends ConfigBase {
 
@@ -46,15 +46,13 @@ public class ObtenerReservaStepDefinition extends ConfigBase {
     @Cuando("hago una peticion para consultar una reserva existente")
     public void hagoUnaPeticionParaConsultarUnaReservaExistente() {
         try {
-            SerenityRest.given()
-                    .contentType(ContentType.JSON)
-                    .body(crearReservaRandom())
-                    .post(SERVICIOS_BASE_FOODKA.concat(RecursosWebPost.POST_CREAR_RESERVA.obtenerValor()));
-        } catch (Exception exception){
+            precondiciones()
+                    .reservaExistente(SERVICIOS_BASE_FOODKA, RecursosWebPost.POST_CREAR_RESERVA.obtenerValor());
+        } catch (Exception exception) {
             LOGGER.error("Ocurrio un error mientras se creaba - usuario existente");
             Assertions.fail(exception);
         }
-        
+
 
         Reserva existente = SerenityRest.lastResponse().as(Reserva.class);
         LOGGER.info("Reserva existente en la base de datos: ".concat(existente.toJson()));
@@ -78,14 +76,28 @@ public class ObtenerReservaStepDefinition extends ConfigBase {
         Reserva respuestaGet = respuestaReserva().answeredBy(actor);
 
         actor.should(
-                seeThat("la informacion devuelta",
+                seeThat("la informacion de la reserva devuelta",
                         response -> respuestaGet,
                         allOf(
-                                hasProperty("cliente"),
-                                hasProperty("hora"),
-                                hasProperty("dia"),
-                                hasProperty("id"),
-                                hasProperty("mensaje")
+                                hasProperty("cliente",notNullValue()),
+                                hasProperty("hora",notNullValue()),
+                                hasProperty("dia",notNullValue()),
+                                hasProperty("id",notNullValue()),
+                                hasProperty("mensaje",notNullValue()),
+                                hasProperty("cantidadPersonas",notNullValue())
+                        )
+                ),
+                seeThat("la informacion del cliente devuelta",
+                        response-> respuestaGet,
+                        allOf(
+                                hasProperty("cliente",
+                                        allOf(
+                                                hasProperty("nombre", notNullValue()),
+                                                hasProperty("apellido",notNullValue()),
+                                                hasProperty("email", notNullValue()),
+                                                hasProperty("telefono", notNullValue())
+                                        )
+                                )
                         )
                 )
         );

@@ -9,7 +9,8 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonPropertyOrder({
         "apellido",
         "email",
-        "nombre"
+        "nombre",
+        "telefono"
 })
 public class Cliente {
 
@@ -24,6 +25,10 @@ public class Cliente {
     @JsonInclude(Include.NON_DEFAULT)
     @JsonProperty("nombre")
     private String nombre;
+
+    @JsonInclude(Include.NON_DEFAULT)
+    @JsonProperty("telefono")
+    private String telefono;
 
     public String getApellido() {
         return apellido;
@@ -47,6 +52,14 @@ public class Cliente {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }
 
