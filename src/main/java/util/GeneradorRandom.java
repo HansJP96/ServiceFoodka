@@ -18,6 +18,7 @@ public class GeneradorRandom {
     private GeneradorRandom() {
     }
 
+
     public static String diaRandom(){
         SimpleDateFormat patronFecha = new SimpleDateFormat("dd/MM/yyyy");
         return patronFecha.format(faker.date().future(150, TimeUnit.DAYS));
