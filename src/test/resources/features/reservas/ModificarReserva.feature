@@ -16,4 +16,4 @@ Característica: Modificar informacion de reservas
 
   Escenario: Actualizar datos a reserva inexistente
     Cuando quiero modificar alguno de una reserva que no existe
-    Entonces no obtengo informacion alguna actualizada
+      Entonces no obtengo informacion alguna actualizada

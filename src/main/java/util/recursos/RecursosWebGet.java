@@ -2,7 +2,8 @@ package util.recursos;
 
 public enum RecursosWebGet implements ReemplazarParametro {
     GET_LISTA_RESERVAS("/api/reserva"),
-    GET_UNA_RESERVA("/api/reserva/{id}");
+    GET_UNA_RESERVA("/api/reserva/{id}"),
+    GET_HORAS_DIA("/api/reserva/findByDia/{dia}");
 
     private final String valor;
 

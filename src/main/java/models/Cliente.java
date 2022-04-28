@@ -26,10 +26,6 @@ public class Cliente {
     @JsonProperty("nombre")
     private String nombre;
 
-    @JsonInclude(Include.NON_DEFAULT)
-    @JsonProperty("telefono")
-    private String telefono;
-
     public String getApellido() {
         return apellido;
     }
@@ -54,12 +50,5 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
 }
 

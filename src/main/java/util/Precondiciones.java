@@ -11,10 +11,17 @@ public class Precondiciones {
         return new Precondiciones();
     }
 
-    public void reservaExistente(String urlBase, String recursoWeb){
+    public void crearReservaExistente(String urlBase, String recursoWeb){
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(crearReservaRandom())
                 .post(urlBase.concat(recursoWeb));
+    }
+
+    public void traerReservaExistente(String urlBase, String recursoWeb, String id){
+        SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(crearReservaRandom())
+                .get(urlBase.concat(recursoWeb),id);
     }
 }

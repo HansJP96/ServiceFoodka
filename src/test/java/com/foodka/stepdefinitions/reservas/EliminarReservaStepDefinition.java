@@ -12,7 +12,6 @@ import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import util.recursos.RecursosWebDelete;
-import util.recursos.RecursosWebGet;
 import util.recursos.RecursosWebPost;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
@@ -22,7 +21,6 @@ import static questions.RespuestaReserva.respuestaReserva;
 import static questions.RespuestaVacia.respuestaVacia;
 import static questions.VerificarRespuestaHttp.verificarRespuestaHttp;
 import static task.delete.DeleteConParametro.deleteConParametro;
-import static task.get.GetConParametro.getConParametro;
 import static util.GeneradorRandom.idRandom;
 import static util.Precondiciones.precondiciones;
 
@@ -45,7 +43,7 @@ public class EliminarReservaStepDefinition extends ConfigBase {
     public void hagoUnaPeticionParaCancelarUnaReserva() {
         try {
             precondiciones()
-                    .reservaExistente(SERVICIOS_BASE_FOODKA, RecursosWebPost.POST_CREAR_RESERVA.obtenerValor());
+                    .crearReservaExistente(SERVICIOS_BASE_FOODKA, RecursosWebPost.POST_CREAR_RESERVA.obtenerValor());
         } catch (Exception exception) {
             LOGGER.error("Ocurrio un error mientras se creaba - usuario existente");
             Assertions.fail(exception);

@@ -14,6 +14,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
         "hora",
         "id",
         "mensaje",
+        "telefono",
         "cantidadPersonas"
 })
 public class Reserva extends ConvertidorJson {
@@ -39,8 +40,12 @@ public class Reserva extends ConvertidorJson {
     private String mensaje;
 
     @JsonInclude(Include.NON_DEFAULT)
+    @JsonProperty("telefono")
+    private String telefono;
+
+    @JsonInclude(Include.NON_DEFAULT)
     @JsonProperty("cantidadPersonas")
-    private String cantidadPersonas;
+    private int cantidadPersonas;
 
     public Cliente getCliente() {
         return cliente;
@@ -82,11 +87,19 @@ public class Reserva extends ConvertidorJson {
         this.mensaje = mensaje;
     }
 
-    public String getCantidadPersonas() {
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public int getCantidadPersonas() {
         return cantidadPersonas;
     }
 
-    public void setCantidadPersonas(String cantidadPersonas) {
+    public void setCantidadPersonas(int cantidadPersonas) {
         this.cantidadPersonas = cantidadPersonas;
     }
 }

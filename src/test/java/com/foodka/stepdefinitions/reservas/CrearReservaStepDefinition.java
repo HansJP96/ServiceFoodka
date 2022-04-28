@@ -48,7 +48,7 @@ public class CrearReservaStepDefinition extends ConfigBase {
     }
     @Entonces("observo que los datos de mi reserva han sido creados")
     public void observoQueLosDatosDeMiReservaHanSidoCreados() {
-        verificarRespuestaHttp().setExpectedResponse(HttpStatus.SC_CREATED).answeredBy(actor);
+        verificarRespuestaHttp().setExpectedResponse(HttpStatus.SC_OK).answeredBy(actor);
         Reserva respuestaPost = respuestaReserva().answeredBy(actor);
 
         actor.should(seeThat("ver que el ID", actor1 -> respuestaPost.getId(), notNullValue() ) );

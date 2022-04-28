@@ -9,6 +9,7 @@ Característica: Eliminar reserva
   Antecedentes: Acceso al recurso base de la pagina
     Dado que accedo al recurso web de los servicios para eliminar
 
+
   Escenario: Cancelacion de reserva exitosa
     Cuando hago una peticion para cancelar una reserva
     Entonces observo que mi reserva ha sido eliminada

@@ -11,7 +11,7 @@ import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
-import util.recursos.RecursosWebPost;
+import util.recursos.RecursosWebGet;
 import util.recursos.RecursosWebPut;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
@@ -44,17 +44,16 @@ public class ModificarReservaStepDefinition extends ConfigBase {
     @Cuando("quiero modificar alguno de los datos de mi reserva")
     public void quieroModificarAlgunoDeLosDatosDeMiReserva() {
         try {
-            precondiciones().reservaExistente(SERVICIOS_BASE_FOODKA, RecursosWebPost.POST_CREAR_RESERVA.obtenerValor());
+            precondiciones()
+                    .traerReservaExistente(SERVICIOS_BASE_FOODKA, RecursosWebGet.GET_UNA_RESERVA.obtenerValor(), idDefinidoRandom());
         } catch (Exception exception) {
-            LOGGER.error("Ocurrio un error mientras se creaba - usuario existente");
+            LOGGER.error("Ocurrio un error mientras se obtenia - usuario existente");
             Assertions.fail(exception);
         }
 
         existente = SerenityRest.lastResponse().as(Reserva.class);
         LOGGER.info("Reserva existente en la base de datos: ".concat(existente.toJson()));
 
-        existente.setDia(diaRandom());
-        existente.setHora(horaRandom());
         existente.setMensaje(mensajeRandom());
 
         try {

@@ -21,6 +21,7 @@ import static questions.RespuestaReserva.respuestaReserva;
 import static questions.RespuestaVacia.respuestaVacia;
 import static questions.VerificarRespuestaHttp.verificarRespuestaHttp;
 import static task.get.GetConParametro.getConParametro;
+import static util.GeneradorRandom.idDefinidoRandom;
 import static util.GeneradorRandom.idRandom;
 import static util.Precondiciones.precondiciones;
 
@@ -44,25 +45,27 @@ public class ObtenerReservaStepDefinition extends ConfigBase {
 
     @Cuando("hago una peticion para consultar una reserva existente")
     public void hagoUnaPeticionParaConsultarUnaReservaExistente() {
-        try {
-            precondiciones()
-                    .reservaExistente(SERVICIOS_BASE_FOODKA, RecursosWebPost.POST_CREAR_RESERVA.obtenerValor());
-        } catch (Exception exception) {
-            LOGGER.error("Ocurrio un error mientras se creaba - usuario existente");
-            Assertions.fail(exception);
-        }
+//        try {
+//            precondiciones()
+//                    .reservaExistente(SERVICIOS_BASE_FOODKA, RecursosWebPost.POST_CREAR_RESERVA.obtenerValor());
+//        } catch (Exception exception) {
+//            LOGGER.error("Ocurrio un error mientras se creaba - usuario existente");
+//            Assertions.fail(exception);
+//        }
 
 
-        Reserva existente = SerenityRest.lastResponse().as(Reserva.class);
-        LOGGER.info("Reserva existente en la base de datos: ".concat(existente.toJson()));
+//        Reserva existente = SerenityRest.lastResponse().as(Reserva.class);
+        String idExistente = idDefinidoRandom();
+        //LOGGER.info("Reserva existente en la base de datos: ".concat(existente.toJson()));
+        LOGGER.info("Reserva existente en la base de datos: ".concat(idExistente));
         try {
             actor.attemptsTo(
                     getConParametro()
                             .usandoElRecurso(RecursosWebGet.GET_UNA_RESERVA.obtenerValor())
-                            .setParametroYValor("id", existente.getId())
+                            .setParametroYValor("id",idExistente)
             );
             LOGGER.info("GET realizado con exito a: ".concat(RecursosWebGet.GET_UNA_RESERVA
-                    .reemplazarParametro(existente.getId())));
+                    .reemplazarParametro(idExistente)));
         } catch (Exception exception) {
             LOGGER.error("Ocurrio un error mientras se accedia al recurso web");
             Assertions.fail(exception);
@@ -82,8 +85,9 @@ public class ObtenerReservaStepDefinition extends ConfigBase {
                                 hasProperty("hora", notNullValue()),
                                 hasProperty("dia", notNullValue()),
                                 hasProperty("id", notNullValue()),
-                                hasProperty("mensaje", notNullValue()),
-                                hasProperty("cantidadPersonas", notNullValue())
+                                hasProperty("telefono", notNullValue()),
+                                hasProperty("cantidadPersonas", notNullValue()),
+                                hasProperty("mensaje", notNullValue())
                         )
                 )
         );
@@ -96,8 +100,7 @@ public class ObtenerReservaStepDefinition extends ConfigBase {
                                         allOf(
                                                 hasProperty("nombre", notNullValue()),
                                                 hasProperty("apellido", notNullValue()),
-                                                hasProperty("email", notNullValue()),
-                                                hasProperty("telefono", notNullValue())
+                                                hasProperty("email", notNullValue())
                                         )
                                 )
                         )

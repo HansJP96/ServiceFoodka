@@ -2,11 +2,11 @@ package util;
 
 public enum Horas {
     DOCE("12:00"),
-    DOS("02:00"),
-    CUATRO("04:00"),
-    SEIS("06:00"),
-    OCHO("08:00"),
-    DIEZ("10:00");
+    DOS("14:00"),
+    CUATRO("16:00"),
+    SEIS("18:00"),
+    OCHO("20:00"),
+    DIEZ("22:00");
 
     private final String valor;
 
